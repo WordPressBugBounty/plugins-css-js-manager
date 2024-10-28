@@ -4,7 +4,7 @@ Donate link: piwebsolution.com
 Tags: Async CSS, Defer CSS, Defer JS, Async JS, pagespeed, remove css, remove js
 Requires at least: 3.0.1
 Tested up to: 6.6.1
-Stable tag: 2.4.49.34
+Stable tag: 2.4.49.36
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -95,6 +95,9 @@ Yes you can remove css or js based on the device if it is mobile or desktop
 Yes you can do that in the pro version
 
 == Changelog ==
+
+= 2.4.49.36 =
+* Tested for WC 9.3.3
 
 = 2.4.49.32 =
 * Tested for WC 9.1.4
