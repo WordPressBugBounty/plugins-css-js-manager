@@ -4,6 +4,16 @@ v1.0.0
 */
 if(!class_exists('pisol_css_js_manager_review')){
 class pisol_css_js_manager_review{
+    public $title;
+    public $slug;
+    public $activation_date;
+    public $saved_value;
+    public $review_url;
+    public $review_after;
+    public $buy_url;
+    public $price;
+    public $allowed_tags = array();
+    
     function __construct($title, $slug ){
         if(function_exists('is_admin') && is_admin()){
         $this->title = $title;

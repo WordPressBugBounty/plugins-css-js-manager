@@ -8,18 +8,22 @@ class pisol_css_js_manager_other_plugins{
 
     private $active_tab;
 
-    private $this_tab = 'other_plugins';
+    private $this_tab = 'pisol_dcw_other_plugins';
 
-    private $tab_name = "Our Plugins";
+    private $tab_name = "Other addons";
 
-    private $setting_key = 'pisol_css_js_manager_other_plugins';
+    private $setting_key = 'pisol_dcw_other_plugins';
+
+    public $tab;
+
+    public $settings;
 
 
     function __construct($plugin_name){
         $this->plugin_name = $plugin_name;
 
         
-        $this->tab = filter_input( INPUT_GET, 'tab');
+        $this->tab = sanitize_text_field(filter_input( INPUT_GET, 'tab'));
         $this->active_tab = $this->tab != "" ? $this->tab : 'default';
 
         $this->settings = array(
@@ -33,10 +37,17 @@ class pisol_css_js_manager_other_plugins{
 
         add_action($this->plugin_name.'_tab', array($this,'tab'),20);
 
+        add_filter('install_plugins_nonmenu_tabs', array($this,'adding_tab_to_list'));
+
+        add_filter('install_plugins_table_api_args_'.$this->this_tab, [$this, 'modify_tab_args']);
+
+        add_action('install_plugins_'.$this->this_tab, [$this, 'plugin_list']);
+
         $this->register_settings();
         
     }
 
+    
     function register_settings(){   
 
         foreach($this->settings as $setting){
@@ -47,42 +58,48 @@ class pisol_css_js_manager_other_plugins{
 
     function tab(){
         ?>
-        <a class=" px-3 text-light d-flex align-items-center  border-left border-right  <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : 'bg-secondary'); ?>" href="<?php echo admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ); ?>">
-            <?php _e( $this->tab_name, 'http2-push-content' ); ?> 
+        <a class=" px-3 text-light d-flex align-items-center  border-left border-right  <?php echo ($this->active_tab == $this->this_tab ? 'bg-primary' : 'bg-secondary'); ?>" href="<?php echo esc_url( admin_url( 'admin.php?page='.sanitize_text_field($_GET['page']).'&tab='.$this->this_tab ) ); ?>">
+            <?php echo esc_html( $this->tab_name ); ?> 
         </a>
         <?php
     }
 
     function tab_content(){
 
-        require_once ABSPATH . 'wp-admin/includes/class-wp-plugin-install-list-table.php';
-        
-        add_filter('install_plugins_nonmenu_tabs', function ($tabs) {
-            $tabs[] = 'rajeshsingh520';
-            return $tabs;
-        });
-        add_filter('install_plugins_table_api_args_rajeshsingh520', function ($args) {
-            global $paged;
-            return [
-                'page' => $paged,
-                'per_page' => 20,
-                'locale' => get_user_locale(),
-                'author' => 'rajeshsingh520',
-            ];
-        });
+        do_action('install_plugins_'.$this->this_tab);
+       
+    }
 
-        $_POST['tab'] = 'rajeshsingh520';
+    function adding_tab_to_list($tabs){
+        $tabs[] = $this->this_tab;
+        return $tabs;
+    }
+
+    function modify_tab_args($args){
+        global $paged;
+        return [
+            'page' => $paged,
+            'per_page' => 25,
+            'locale' => get_user_locale(),
+            'author' => 'rajeshsingh520',
+        ];
+    }
+
+    function plugin_list(){
+
+        require_once ABSPATH . 'wp-admin/includes/class-wp-plugin-install-list-table.php';
         $table = new WP_Plugin_Install_List_Table();
         $table->prepare_items();
-
+    
         wp_enqueue_script('plugin-install');
         add_thickbox();
         wp_enqueue_script('updates');
+    
         echo '<div id="plugin-filter">';
-        echo $table->display();
+        $table->display();
         echo '</div>';
-        
     }
+
 
 }
 

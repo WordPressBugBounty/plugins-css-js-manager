@@ -20,6 +20,10 @@ class Css_Js_Manager_General_Option{
 
     public $to = array("push-preload", "push", "preload");
 
+    public $tab;
+
+    public $settings = array();
+
     function __construct($plugin_name, $version){
         $this->plugin_name = $plugin_name;
         $this->version = $version;

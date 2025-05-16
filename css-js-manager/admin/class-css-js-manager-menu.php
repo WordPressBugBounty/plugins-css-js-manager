@@ -79,6 +79,14 @@ class Css_Js_Manager_Menu{
     public function enqueue_scripts() {
         wp_enqueue_script( $this->plugin_name."_react_js1", plugin_dir_url( __FILE__ ) . 'build/static/js/1.e147a57c.chunk.js', array( ), $this->version, true );
         wp_enqueue_script( $this->plugin_name."_react_js2", plugin_dir_url( __FILE__ ) . 'build/static/js/main.d4066b77.chunk.js', array( ), $this->version, true );
+
+        if($_GET['tab'] !== 'other_plugins'){
+            wp_dequeue_script('react-dom');
+            wp_deregister_script('react-dom');
+            // Dequeue and deregister the script
+            wp_dequeue_script('wp-react-dom');
+            wp_deregister_script('wp-react-dom');
+        }
 	  }
  
 }

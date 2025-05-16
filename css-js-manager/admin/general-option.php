@@ -14,6 +14,8 @@ class CCM_General_Option{
 
     private $setting_key = 'ccm_general_option';
 
+    public $tab;
+    public $settings = array();
     
 
     function __construct(){
