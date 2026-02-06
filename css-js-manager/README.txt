@@ -1,10 +1,10 @@
-=== CSS JS Manager, Async JavaScript, Defer Render Blocking CSS supports WooCommerce ===
+=== CSS JS Manager, Async JavaScript, Defer Render Blocking CSS ===
 Contributors: rajeshsingh520
 Donate link: piwebsolution.com
 Tags: Async CSS, Defer CSS, Defer JS, Async JS, pagespeed, remove css, remove js
 Requires at least: 3.0.1
-Tested up to: 6.8
-Stable tag: 2.4.49.62
+Tested up to: 6.9
+Stable tag: 2.4.49.66
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
