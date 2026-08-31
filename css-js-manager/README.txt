@@ -3,8 +3,8 @@ Contributors: rajeshsingh520
 Donate link: piwebsolution.com
 Tags: Async CSS, Defer CSS, Defer JS, Async JS, pagespeed, remove css, remove js
 Requires at least: 3.0.1
-Tested up to: 7.0
-Stable tag: 2.4.49.73
+Tested up to: 7.1
+Stable tag: 2.4.49.74
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
